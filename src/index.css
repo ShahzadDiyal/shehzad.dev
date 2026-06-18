@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Inter:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
+
+@theme {
+  --color-brand-dark: #0B1120;
+  --color-brand-accent: #00F5D4;
+  --color-brand-secondary: #7C3AED;
+  --color-brand-light: #F8FAFC;
+  
+  --font-sans: "Inter", "Geist", system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes pulse-slow {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.35; transform: scale(1.15); }
+  }
+}
+
+/* Base custom interactive styles */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #0B1120;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 212, 0.5);
+}
+
+/* Glassmorphism custom components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background: rgba(11, 17, 32, 0.7);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glowing Border elements */
+.glow-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0, 245, 212, 0.15), rgba(124, 58, 237, 0.15));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-card:hover::after {
+  opacity: 1;
+}
+
+/* Animated particle grid background */
+.particle-grid {
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(124, 58, 237, 0.18), transparent 80%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 245, 212, 0.1), transparent 50%),
+    radial-gradient(circle at 10% 90%, rgba(124, 58, 237, 0.08), transparent 40%);
+}
+
+.light .particle-grid {
+  background-image: 
+    radial-gradient(ellipse at 50% -20%, rgba(124, 58, 237, 0.1), transparent 80%),
+    radial-gradient(ellipse at 80% 50%, rgba(0, 245, 212, 0.05), transparent 50%);
+}
+
+/* Command palette styling integration */
+.kbd-hint {
+  padding: 2px 6px;
+  font-size: 10px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+}
+
+.light .kbd-hint {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(0, 245, 212, 0.3);
+  color: inherit;
+}
+
+.dark ::selection {
+  background: rgba(124, 58, 237, 0.4);
+  color: #fff;
+}
